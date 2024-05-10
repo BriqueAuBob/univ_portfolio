@@ -16,7 +16,7 @@ defineProps({
 
   <header class="py-32 text-center bg-cyan-800">
     <span class="bg-white/90 px-4 py-3 rounded-3xl shadow-md backdrop-blur-md text-sm font-medium">
-      Portfolio universitaire de
+      Portfolio universitaire
     </span>
     <h1 class="text-3xl font-semibold mt-6 text-white">Brandon Clément</h1>
   </header>
