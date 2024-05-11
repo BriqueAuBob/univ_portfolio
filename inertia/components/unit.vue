@@ -1,17 +1,17 @@
 <script setup>
-import { computed } from 'vue'
-import Project from './project.vue'
-import Empty from './empty.vue'
+import { computed } from 'vue';
+import Project from './project.vue';
+import Empty from './empty.vue';
 
 const props = defineProps({
   unit: Object,
-})
-const lowerTitle = computed(() => props?.unit?.name?.toLowerCase())
+});
+const lowerTitle = computed(() => props?.unit?.name?.toLowerCase());
 </script>
 
 <template>
   <section :id="lowerTitle" class="py-4">
-    <h1 class="text-center text-xl mb-3">{{ unit.name }}</h1>
+    <h1 class="mb-3 text-center text-xl">{{ unit.name }}</h1>
     <div class="grid grid-cols-3 gap-4">
       <template v-for="course in unit.courses" v-if="unit.courses.length > 0">
         <template v-if="course.projects.length > 0">

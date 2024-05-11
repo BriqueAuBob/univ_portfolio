@@ -4,13 +4,9 @@ defineProps({
     type: Object,
     required: true,
   },
-})
+});
 </script>
 
 <template>
-  <img
-    :src="project.image"
-    alt="Project image"
-    class="w-full h-40 object-cover mb-4 rounded-t-2xl"
-  />
+  <img :src="project.image" alt="Project image" class="mb-4 h-40 w-full rounded-t-2xl object-cover" />
 </template>

@@ -1,5 +1,5 @@
 <script setup>
-const model = defineModel()
+const model = defineModel();
 defineProps({
   label: {
     type: String,
@@ -11,18 +11,18 @@ defineProps({
     type: String,
     default: 'text',
   },
-})
+});
 </script>
 
 <template>
   <div>
-    <label class="block text-sm font-medium text-zinc-500 ml-4">{{ label }}</label>
+    <label class="ml-4 block text-sm font-medium text-zinc-500">{{ label }}</label>
     <input
       v-model="model"
       :placeholder="placeholder"
-      class="w-full px-4 py-3 rounded border bg-zinc-700 border-zinc-500 focus:outline-none focus:border-neutral-200"
+      class="w-full rounded border border-zinc-500 bg-zinc-700 px-4 py-3 focus:border-neutral-200 focus:outline-none"
       :type="type"
-      :class="type === 'color' && 'h-12 px-0 py-0 bg-transparent border-none'"
+      :class="type === 'color' && 'h-12 border-none bg-transparent px-0 py-0'"
     />
   </div>
 </template>

@@ -4,11 +4,11 @@ defineProps({
     type: String,
     default: 'Aucun résultat trouvé...',
   },
-})
+});
 </script>
 
 <template>
-  <p class="col-span-3 text-center text-gray-500 text-sm mb-4 leading-relaxed">
+  <p class="col-span-3 mb-4 text-center text-sm leading-relaxed text-gray-500">
     {{ title }}<br />
     Revenez plus tard !
   </p>

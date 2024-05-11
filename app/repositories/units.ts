@@ -1,4 +1,4 @@
-import Unit from '#models/unit'
+import Unit from '#models/unit';
 
 export default class UnitRepository {
   public async all(loadRelations = true) {
@@ -6,28 +6,28 @@ export default class UnitRepository {
       .orderBy('id', 'asc')
       .if(loadRelations, (query) => {
         query.preload('courses', (coursesQuery) => {
-          coursesQuery.preload('projects')
-        })
+          coursesQuery.preload('projects');
+        });
       })
-      .exec()
+      .exec();
   }
 
   public async find(id: number) {
-    return Unit.findOrFail(id)
+    return Unit.findOrFail(id);
   }
 
   public async create(data: any) {
-    return Unit.create(data)
+    return Unit.create(data);
   }
 
   public async update(unit: Unit | number, data: any) {
-    unit = typeof unit === 'number' ? await this.find(unit) : unit
-    unit.merge(data)
-    await unit.save()
-    return unit
+    unit = typeof unit === 'number' ? await this.find(unit) : unit;
+    unit.merge(data);
+    await unit.save();
+    return unit;
   }
 
   public async delete(unit: Unit) {
-    await unit.delete()
+    await unit.delete();
   }
 }

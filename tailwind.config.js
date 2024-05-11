@@ -4,9 +4,15 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: '1rem',
+      // padding: '3rem',
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+      },
     },
     extend: {},
   },
   plugins: [],
-}
+};

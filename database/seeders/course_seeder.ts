@@ -1,5 +1,5 @@
-import { BaseSeeder } from '@adonisjs/lucid/seeders'
-import Course from '#models/course'
+import { BaseSeeder } from '@adonisjs/lucid/seeders';
+import Course from '#models/course';
 
 export default class extends BaseSeeder {
   async run() {
@@ -16,6 +16,6 @@ export default class extends BaseSeeder {
         title: 'Déploiement de services',
         code: 'WRA408D',
       },
-    ])
+    ]);
   }
 }

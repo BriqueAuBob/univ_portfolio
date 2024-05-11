@@ -1,4 +1,4 @@
-import { defineConfig } from '@adonisjs/inertia'
+import { defineConfig } from '@adonisjs/inertia';
 
 export default defineConfig({
   /**
@@ -21,4 +21,4 @@ export default defineConfig({
     enabled: true,
     entrypoint: 'inertia/app/ssr.ts',
   },
-})
+});
