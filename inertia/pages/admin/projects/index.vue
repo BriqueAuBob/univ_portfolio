@@ -11,32 +11,39 @@ defineProps({
 <template>
   <Layout>
     <div class="flex items-center justify-between">
-      <h1 class="mb-4 text-2xl font-semibold">Unités d'enseignements</h1>
-      <Link href="/admin/units/create">
-        <Button color="green">Ajouter une unité d'enseignements</Button>
+      <h1 class="mb-4 text-2xl font-semibold">Projets</h1>
+      <Link href="/admin/projects/create">
+        <Button color="green">Ajouter un projet</Button>
       </Link>
     </div>
     <table class="mt-4 w-full table-auto text-left">
       <thead class="bg-neutral-200 dark:bg-neutral-700">
         <tr>
+          <th class="py-4">Image</th>
           <th class="py-4">Nom</th>
-          <th class="py-4">Couleur</th>
+          <th class="py-4">Description</th>
           <th class="py-4">Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr
-          v-for="unit in data"
+          v-for="project in data"
           class="border-b border-neutral-200 bg-neutral-100/20 dark:border-neutral-700 dark:bg-neutral-800/90"
-          :key="unit.id"
+          :key="project.id"
         >
-          <td class="py-4">{{ unit.name }}</td>
-          <td class="flex items-center gap-2 py-2">
-            <div class="h-8 w-8 rounded-full" :style="`background-color: #${unit.color}`" />
-            #{{ unit.color }}
+          <td class="py-4">
+            <img
+              :src="`/uploads/${project.image}`"
+              alt="project.name"
+              class="w-64 h-32 object-cover rounded-lg"
+            />
           </td>
+          <td class="py-4">{{ project.name }}</td>
+          <td class="py-4">{{ project.description || 'Non définie' }}</td>
           <td class="items-center space-x-2 py-2">
-            <Button color="blue"> Editer </Button>
+            <Link :href="`/admin/projects/${project.id}/edit`">
+              <Button color="blue"> Editer </Button>
+            </Link>
             <Button color="red"> Supprimer </Button>
           </td>
         </tr>

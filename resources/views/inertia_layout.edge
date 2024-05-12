@@ -11,7 +11,14 @@
   @vite(['inertia/app/app.ts', `inertia/pages/${page.component}.vue`])
 </head>
 
-<body class="bg-gray-50">
+<body class="bg-gray-50 dark:bg-neutral-950 dark:text-neutral-100 ease-in duration-200">
+  <div class="fixed min-h-screen top-0 bottom-0 left-0 right-0 -z-10 container flex justify-between opacity-15">
+      <div class="h-full border-l border-neutral-500"></div>
+      <div class="h-full border-l border-neutral-400 dark:border-neutral-500 border-dashed"></div>
+      <div class="h-full border-l border-neutral-400 dark:border-neutral-500 border-dashed"></div>
+      <div class="h-full border-l border-neutral-400 dark:border-neutral-500 border-dashed"></div>
+      <div class="h-full border-l border-neutral-500"></div>
+  </div>
   @inertia()
 </body>
 

@@ -10,13 +10,17 @@ const lowerTitle = computed(() => props?.unit?.name?.toLowerCase());
 </script>
 
 <template>
-  <section :id="lowerTitle" class="py-4">
-    <h1 class="mb-3 text-center text-xl">{{ unit.name }}</h1>
-    <div class="grid grid-cols-3 gap-4">
+  <section :id="lowerTitle" class="py-4 relative">
+    <h1 class="text-4xl font-black mb-4">{{ unit.name }}</h1>
+    <div class="absolute w-96 h-96 -top-32 -left-32 blur-[128px] -z-10 rounded-full opacity-45 dark:opacity-20 mix-blend-hard-light" :style="`background-color: #${unit.color}`"></div>
+    <div class="absolute w-96 h-96 -bottom-32 -right-32 blur-[128px] -z-10 rounded-full opacity-20 dark:opacity-5 mix-blend-hard-light" :style="`background-color: #${unit.color}`"></div>
+    <div class="flex flex-col gap-4">
       <template v-for="course in unit.courses" v-if="unit.courses.length > 0">
         <template v-if="course.projects.length > 0">
-          <h2 class="col-span-3 text-lg font-semibold">{{ course.title }}</h2>
-          <Project v-for="project in course.projects" :project="project" />
+          <template v-for="(project, index) in course.projects">
+            <Project :project="project" />
+            <hr :class="{'border-neutral-200 dark:border-neutral-800': true, 'border-dashed border-neutral-100': index + 1 !== course.projects.length}" />
+          </template>
         </template>
         <Empty title="Aucun projet trouvé..." v-else />
       </template>

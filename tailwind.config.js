@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./resources/**/*.edge', './inertia/**/*.vue'],
+  darkMode: 'class',
   theme: {
     container: {
       center: true,
@@ -14,5 +15,7 @@ export default {
     },
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 };

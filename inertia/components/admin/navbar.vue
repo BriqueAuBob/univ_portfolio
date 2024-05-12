@@ -1,5 +1,6 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
+import SwitchTheme from '../switchTheme.vue';
 
 const links = [
   { href: '/admin', label: 'Dashboard' },
@@ -10,19 +11,20 @@ const links = [
 </script>
 
 <template>
-  <nav class="bg-zinc-800">
+  <nav class="bg-neutral-100 dark:bg-neutral-800">
     <div class="container py-4">
       <div class="flex items-center justify-between">
-        <Link :href="links[0]?.href" class="text-2xl font-semibold text-white"> Brandon Clément </Link>
+        <Link :href="links[0]?.href" class="text-2xl font-semibold"> Brandon Clément </Link>
         <div class="hidden items-center gap-2 md:flex">
           <Link
             v-for="link in links"
             :href="link.href"
-            class="rounded-lg px-2 py-1 text-white duration-200 ease-in hover:bg-zinc-500"
-            :class="$page.url === link.href && 'bg-zinc-500'"
+            class="rounded-lg px-2 py-1 duration-200 ease-in hover:bg-neutral-600 hover:text-white"
+            :class="$page.url === link.href && 'bg-neutral-600 text-white'"
           >
             {{ link.label }}
           </Link>
+          <SwitchTheme />
         </div>
       </div>
     </div>

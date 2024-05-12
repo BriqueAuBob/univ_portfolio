@@ -10,14 +10,17 @@ defineProps({
 </script>
 
 <template>
-  <Link :href="`/projets/${project.id}`">
-    <article class="cursor-pointer rounded-2xl border-2 bg-white shadow-sm duration-200 ease-in hover:-translate-y-1 hover:shadow-md">
-      <img :src="project.image" alt="Project image" class="mb-4 h-40 w-full rounded-t-2xl object-cover" />
-      <div class="px-4 pb-4">
-        <h1 class="text-xl font-semibold">{{ project.name }}</h1>
-        <h2 class="mt-1 text-lg font-medium">{{ project.description }}</h2>
-        <span class="mt-2 block text-sm text-gray-500"> Créé le {{ new Date(project.createdAt).toLocaleDateString() }} </span>
+  <h1 class="text-2xl font-black">{{ project.name }}</h1>
+  <article
+    class="grid grid-cols-6 gap-4"
+  >
+    <img :src="`/uploads/${project.image}`" alt="Project image" class="col-span-2 mb-4 w-full rounded-2xl object-cover" />
+    <div class="pb-4 col-span-4">
+      <h2 class="mt-1 text-lg font-medium">{{ project.description }}</h2>
+      <div class="prose prose-zinc dark:prose-invert" v-html="project.content" v-if="project.content"></div>
+      <div v-else>
+        <p>Aucun contenu pour ce projet.</p>
       </div>
-    </article>
-  </Link>
+    </div>
+  </article>
 </template>

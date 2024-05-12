@@ -12,6 +12,9 @@ export default class Project extends BaseModel {
   declare description: string;
 
   @column()
+  declare content: string;
+
+  @column()
   declare image: string;
 
   @column()

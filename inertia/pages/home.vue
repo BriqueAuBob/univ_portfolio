@@ -28,7 +28,7 @@ defineProps({
         <ul class="flex flex-wrap gap-2">
           <li v-for="unit in units">
             <a
-              class="flex rounded-3xl px-10 py-4 text-4xl text-neutral-800 outline outline-0 duration-200 ease-in hover:-translate-y-1 hover:text-black hover:outline-2"
+              class="flex rounded-full px-10 py-4 text-4xl text-neutral-800 outline outline-0 backdrop-blur-sm duration-200 ease-in hover:-translate-y-1 hover:text-black hover:outline-2 dark:text-white"
               :href="`#${unit.name.toLowerCase()}`"
               :style="{
                 backgroundColor: `#${unit.color}90`,

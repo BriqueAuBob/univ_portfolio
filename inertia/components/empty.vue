@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-  <p class="col-span-3 mb-4 text-center text-sm leading-relaxed text-gray-500">
+  <p class="col-span-3 mb-4 text-sm leading-relaxed text-gray-500">
     {{ title }}<br />
     Revenez plus tard !
   </p>

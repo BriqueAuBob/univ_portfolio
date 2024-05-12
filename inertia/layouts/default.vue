@@ -1,8 +1,10 @@
 <script setup>
-import Navbar from '../components/navbar.vue';
+import SwitchTheme from '../components/switchTheme.vue';
 </script>
 
 <template>
-  <Navbar />
+  <div class="container flex justify-end pt-8">
+    <SwitchTheme />
+  </div>
   <slot />
 </template>
