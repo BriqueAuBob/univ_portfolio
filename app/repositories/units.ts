@@ -6,7 +6,9 @@ export default class UnitRepository {
       .orderBy('id', 'asc')
       .if(loadRelations, (query) => {
         query.preload('courses', (coursesQuery) => {
-          coursesQuery.preload('projects');
+          coursesQuery.preload('projects', (projectsQuery) => {
+            projectsQuery.orderBy('createdAt', 'asc');
+          });
         });
       })
       .exec();
