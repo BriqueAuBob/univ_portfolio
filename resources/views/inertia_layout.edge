@@ -9,6 +9,12 @@
   
   @inertiaHead()
   @vite(['inertia/app/app.ts', `inertia/pages/${page.component}.vue`])
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlightjs-vue"></script>
 </head>
 
 <body class="bg-gray-50 dark:bg-neutral-950 dark:text-neutral-100 ease-in duration-200">
@@ -20,6 +26,10 @@
       <div class="h-full border-l border-neutral-500"></div>
   </div>
   @inertia()
+  <script>
+    hljs.registerLanguage("vue", window.hljsDefineVue);
+    hljs.highlightAll();
+  </script>
 </body>
 
 </html>

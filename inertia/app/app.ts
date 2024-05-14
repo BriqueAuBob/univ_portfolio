@@ -1,4 +1,5 @@
 import '../css/app.css';
+import '../css/hljs.css';
 import { createSSRApp, h } from 'vue';
 import type { DefineComponent } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';

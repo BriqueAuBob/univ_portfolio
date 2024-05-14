@@ -8,19 +8,25 @@ import tiptap from '../../../components/tiptap.vue';
 
 const props = defineProps({
   project: Object,
+  courses: Array,
 });
 
+const fieldValues = {
+  courseId: props.courses,
+}
 const form = reactive({
-  name: props.project?.name,
-  description: props.project?.description,
-  content: props.project?.content,
+  name: '',
+  description: '',
+  content: '',
   image: '',
+  courseId: null
 });
 const translatedFields = {
   name: 'Nom',
   description: 'Description',
   content: 'Contenu',
   image: 'Image',
+  courseId: 'Matière',
 };
 
 const submit = async () => {
@@ -54,10 +60,20 @@ const getFieldError = (field) => {
           :placeholder="`Entrez le ${translatedFields[field].toLowerCase()} du projet`"
           :label="translatedFields[field]"
           v-model="form[field]"
-          v-if="field !== 'content' && field !== 'image'"
+          v-if="field !== 'content' && field !== 'image' && !fieldValues[field]"
         />
-        <input type="file" @input="form.image = $event.target.files[0]"v-else-if="field === 'image'" />
-        <tiptap v-model="form.content" v-else />
+        <input class="mt-4" type="file" @input="form.image = $event.target.files[0]"v-else-if="field === 'image'" />
+        <select v-model="form.courseId" v-else-if="fieldValues[field]" class="mt-4 p-4 w-full border rounded-xl border-neutral-300 bg-white focus:border-neutral-200 focus:outline-none dark:border-zinc-500 dark:bg-zinc-700">
+          <option disabled selected>Choisissez une matière</option>
+          <option
+            v-for="course in fieldValues[field]"
+            :key="course.id"
+            :value="course.id"
+          >
+            {{ course.title }}
+          </option>
+        </select>
+        <tiptap class="mt-4" v-model="form.content" v-else />
         <span class="text-sm text-red-400">
           {{ getFieldError(field) }}
         </span>

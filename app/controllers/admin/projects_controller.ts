@@ -1,13 +1,14 @@
 import type { HttpContext } from '@adonisjs/core/http';
-import ProjectsRepository from '../repositories/projects.js';
+import ProjectsRepository from '../../repositories/projects.js';
 import { inject } from '@adonisjs/core';
 import createProjectValidator from '#validators/project';
 import { cuid } from '@adonisjs/core/helpers';
 import { MultipartFile } from '@adonisjs/core/bodyparser';
+import CoursesRepository from '../../repositories/courses.js';
 
 @inject()
 export default class ProjectsController {
-  constructor(private projectsRepository: ProjectsRepository) {}
+  constructor(private projectsRepository: ProjectsRepository, private coursesRepository: CoursesRepository) {}
 
   private async handleFileUpload(image: MultipartFile, path: string = 'uploads') {
     await image.move(path, {
@@ -22,6 +23,23 @@ export default class ProjectsController {
     });
   }
 
+  public async create({ inertia }: HttpContext) {
+    return inertia.render('admin/projects/create', {
+      courses: await this.coursesRepository.all(),
+    });
+  }
+
+  public async store({ request, response }: HttpContext) {
+    const payload = await request.validateUsing(createProjectValidator);
+    const image = payload.image;
+    if(image) {
+      payload.image = await this.handleFileUpload(image)
+    }
+
+    await this.projectsRepository.create(payload);
+    response.redirect().toRoute('admin.projects.index');
+  }
+
   public async show({ params, inertia }: HttpContext) {
     return inertia.render('admin/projects/show', {
       project: await this.projectsRepository.show(params.id),
@@ -31,6 +49,7 @@ export default class ProjectsController {
   public async edit({ params, inertia }: HttpContext) {
     return inertia.render('admin/projects/edit', {
       project: await this.projectsRepository.show(params.id),
+      courses: await this.coursesRepository.all(),
     });
   }
 
@@ -43,21 +62,6 @@ export default class ProjectsController {
     }
 
     await this.projectsRepository.update(params.id, payload);
-    response.redirect().toRoute('admin.projects.index');
-  }
-
-  public async create({ inertia }: HttpContext) {
-    return inertia.render('admin/projects/create');
-  }
-
-  public async store({ request, response }: HttpContext) {
-    const payload = await request.validateUsing(createProjectValidator);
-    const image = payload.image;
-    if(image) {
-      payload.image = await this.handleFileUpload(image)
-    }
-
-    await this.projectsRepository.create(payload);
-    response.redirect().toRoute('admin.projects.index');
+    return response.redirect().toRoute('admin.projects.index');
   }
 }

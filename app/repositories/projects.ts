@@ -6,7 +6,7 @@ export default class ProjectsRepository {
   }
 
   public async show(id: number) {
-    return Project.findOrFail(id);
+    return Project.query().where('id', id).preload('course').firstOrFail();
   }
 
   public async update(id: number, data: any) {
