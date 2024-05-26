@@ -25,5 +25,5 @@ router
   .as('admin');
 
 router.get('/uploads/:path', async ({ params, response }) => {
-  return response.download(app.makePath('uploads', params.path));
+  return response.download(app.makePath('../uploads', params.path));
 });

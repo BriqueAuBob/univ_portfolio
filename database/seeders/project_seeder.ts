@@ -20,7 +20,7 @@ export default class extends BaseSeeder {
     const reader = await file.stream().getReader();
     const { value } = await reader.read();
     const path = pathHandler(file, image);
-    writeFileSync(app.makePath('uploads/' + path), value);
+    writeFileSync(app.makePath('../uploads/' + path), value);
     return path;
   }
 
@@ -63,7 +63,7 @@ export default class extends BaseSeeder {
       await Project.query().delete();
 
       // Empty the uploads folder
-      const uploads = app.makePath('uploads');
+      const uploads = app.makePath('../uploads');
       const files = readdirSync(uploads);
       for (const file of files) {
         unlinkSync(uploads + '/' + file);

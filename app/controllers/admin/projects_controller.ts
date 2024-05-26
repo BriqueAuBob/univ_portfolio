@@ -5,6 +5,7 @@ import createProjectValidator from '#validators/project';
 import { cuid } from '@adonisjs/core/helpers';
 import { MultipartFile } from '@adonisjs/core/bodyparser';
 import CoursesRepository from '../../repositories/courses.js';
+import app from '@adonisjs/core/services/app';
 
 @inject()
 export default class AdminProjectsController {
@@ -13,8 +14,8 @@ export default class AdminProjectsController {
     private coursesRepository: CoursesRepository
   ) {}
 
-  private async handleFileUpload(image: MultipartFile, path: string = 'uploads') {
-    await image.move(path, {
+  private async handleFileUpload(image: MultipartFile, path: string = '../uploads') {
+    await image.move(app.makePath(path), {
       name: 'project-' + cuid() + '.' + image.extname,
     });
     return image.fileName as unknown as any;
