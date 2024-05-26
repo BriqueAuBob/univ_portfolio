@@ -7,3 +7,8 @@
     @apply max-w-5xl;
   }
 }
+
+option[selected] {
+  background-color: #2563eb !important;
+  color: #fff;
+}

@@ -1,22 +1,30 @@
-import Course from "#models/course";
+import Course from '#models/course';
 
 export default class CoursesRepository {
-    public async all() {
-      return await Course.all();
-    }
-  
-    public async show(id: number) {
-      return Course.findOrFail(id);
-    }
-  
-    public async update(id: number, data: any) {
-      const course = await Course.findOrFail(id);
-      course.merge(data);
-      await course.save();
-    }
-  
-    public async create(data: any) {
-      await Course.create(data);
-    }
+  public async all() {
+    return await Course.all();
   }
-  
+
+  public async show(id: number) {
+    return Course.findOrFail(id);
+  }
+
+  public async update(id: number, data: any) {
+    const course = await Course.findOrFail(id);
+    course.merge(data);
+    await course.save();
+  }
+
+  public async create(data: any) {
+    const course = await Course.create(data);
+    data.units?.forEach(async (unitId: number) => {
+      await course.related('units').attach([unitId]);
+    });
+    return course;
+  }
+
+  public async delete(id: number) {
+    const course = await this.show(id);
+    await course.delete();
+  }
+}
