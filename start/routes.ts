@@ -7,7 +7,6 @@
 |
 */
 
-import CoursesController from '#controllers/courses_controller';
 import HomeController from '#controllers/home_controller';
 import AdminProjectsController from '#controllers/admin/projects_controller';
 import AdminUnitsController from '#controllers/admin/units_controller';
@@ -19,7 +18,6 @@ router
   .group(() => {
     router.get('/', [HomeController, 'admin']).as('home');
     router.resource('units', AdminUnitsController).as('units');
-    router.resource('courses', CoursesController).as('courses');
     router.resource('projects', AdminProjectsController).as('projects');
   })
   .prefix('admin')

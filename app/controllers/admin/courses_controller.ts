@@ -7,7 +7,7 @@ import { MultipartFile } from '@adonisjs/core/bodyparser';
 import CoursesRepository from '../../repositories/courses.js';
 
 @inject()
-export default class AdminProjectsController {
+export default class ProjectsController {
   constructor(
     private projectsRepository: ProjectsRepository,
     private coursesRepository: CoursesRepository
