@@ -1,5 +1,5 @@
 git pull
-npm run build
+node ace build
 cd build
 npm ci --omit=dev -max-old-space-size=1024
 cp ../.env .
