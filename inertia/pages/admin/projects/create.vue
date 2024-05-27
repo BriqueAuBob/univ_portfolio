@@ -13,13 +13,13 @@ const props = defineProps({
 
 const fieldValues = {
   courseId: props.courses,
-}
+};
 const form = reactive({
   name: '',
   description: '',
   content: '',
   image: '',
-  courseId: null
+  courseId: null,
 });
 const translatedFields = {
   name: 'Nom',
@@ -32,7 +32,7 @@ const translatedFields = {
 const submit = async () => {
   try {
     await router.post('/admin/projects/', form, {
-      forceFormData: true
+      forceFormData: true,
     });
   } catch (error) {
     console.log('An error occurred while updating the project', error);
@@ -62,25 +62,21 @@ const getFieldError = (field) => {
           v-model="form[field]"
           v-if="field !== 'content' && field !== 'image' && !fieldValues[field]"
         />
-        <input class="mt-4" type="file" @input="form.image = $event.target.files[0]"v-else-if="field === 'image'" />
-        <select v-model="form.courseId" v-else-if="fieldValues[field]" class="mt-4 p-4 w-full border rounded-xl border-neutral-300 bg-white focus:border-neutral-200 focus:outline-none dark:border-zinc-500 dark:bg-zinc-700">
+        <input class="mt-4" type="file" @input="form.image = $event.target.files[0]" v-else-if="field === 'image'" />
+        <select
+          v-model="form.courseId"
+          v-else-if="fieldValues[field]"
+          class="mt-4 w-full rounded-xl border border-neutral-300 bg-white p-4 focus:border-neutral-200 focus:outline-none dark:border-zinc-500 dark:bg-zinc-700"
+        >
           <option disabled selected>Choisissez une matière</option>
-          <option
-            v-for="course in fieldValues[field]"
-            :key="course.id"
-            :value="course.id"
-          >
-            {{ course.title }}
-          </option>
+          <option v-for="course in fieldValues[field]" :key="course.id" :value="course.id">{{ course.code }} - {{ course.title }}</option>
         </select>
         <tiptap class="mt-4" v-model="form.content" v-else />
         <span class="text-sm text-red-400">
           {{ getFieldError(field) }}
         </span>
       </div>
-      <progress v-if="form.progress" :value="form.progress.percentage" max="100">
-        {{ form.progress.percentage }}%
-      </progress>
+      <progress v-if="form.progress" :value="form.progress.percentage" max="100">{{ form.progress.percentage }}%</progress>
       <Button color="green" class="mt-4 w-full" @click="submit">Créer</Button>
     </div>
   </Layout>
