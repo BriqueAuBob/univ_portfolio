@@ -34,8 +34,10 @@ export default class extends BaseSeeder {
         );
         return '<img class="w-full rounded-xl shadow-sm" src="/uploads/' + path + '" alt="' + element['alt'] + '" />';
       case 'video':
+        element['src'] = element['src'].replace('http://45.155.169.158', 'https://mmi22d01.mmi-troyes.fr');
         return '<video src="' + element['src'] + '" controls></video>';
       case 'embed':
+        element['src'] = element['src'].replace('http://45.155.169.158', 'https://mmi22d01.mmi-troyes.fr');
         return '<iframe class="w-full min-h-[600px]" src="' + element['src'] + '" frameborder="0" allowfullscreen></iframe>';
       case 'title':
         return '<h1>' + element['content'] + '</h1>';
