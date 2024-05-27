@@ -13,6 +13,9 @@ export default class CoursesRepository {
     const course = await Course.findOrFail(id);
     course.merge(data);
     await course.save();
+    if (data.units) {
+      await course.related('units').sync(data.units);
+    }
   }
 
   public async create(data: any) {
