@@ -56,7 +56,6 @@ const filteredCourses = computed(() => {
             />
           </template>
         </template>
-        <Empty title="Aucun projet trouvé..." v-else />
       </template>
       <Empty title="Aucun cours associé à cette unité d'enseignement..." v-else />
     </div>
