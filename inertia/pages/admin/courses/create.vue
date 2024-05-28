@@ -52,6 +52,7 @@ const getFieldError = (field) => {
           :placeholder="`Entrez le ${translatedFields[field]?.toLowerCase()} de la matière`"
           :label="translatedFields[field]"
           v-model="form[field]"
+          :type="field === 'created_at' ? 'date' : 'text'"
           v-if="field !== 'content' && field !== 'image' && !fieldValues[field]"
         />
         <input class="mt-4" type="file" @input="form.image = $event.target.files[0]" v-else-if="field === 'image'" />

@@ -20,6 +20,7 @@ const form = reactive({
   content: '',
   image: '',
   courseId: null,
+  createdAt: '',
 });
 const translatedFields = {
   name: 'Nom',
@@ -27,6 +28,7 @@ const translatedFields = {
   content: 'Contenu',
   image: 'Image',
   courseId: 'Matière',
+  createdAt: 'Date de création',
 };
 
 const submit = async () => {
@@ -61,6 +63,7 @@ const getFieldError = (field) => {
           :label="translatedFields[field]"
           v-model="form[field]"
           v-if="field !== 'content' && field !== 'image' && !fieldValues[field]"
+          :type="field === 'createdAt' ? 'date' : 'text'"
         />
         <input class="mt-4" type="file" @input="form.image = $event.target.files[0]" v-else-if="field === 'image'" />
         <select

@@ -1,4 +1,6 @@
 <script setup>
+import { computed } from 'vue';
+
 const model = defineModel();
 defineProps({
   label: {
