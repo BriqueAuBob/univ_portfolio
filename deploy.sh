@@ -7,4 +7,4 @@ cp ../.env .
 node ace migration:run --force
 pm2 delete server
 pm2 start bin/server.js --name server
-chmod 777 ./deploy.sh
+sudo chmod 777 ./deploy.sh
