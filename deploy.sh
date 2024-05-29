@@ -1,3 +1,4 @@
+git checkout .
 git pull
 node ace build
 cd build
@@ -6,3 +7,4 @@ cp ../.env .
 node ace migration:run --force
 pm2 delete server
 pm2 start bin/server.js --name server
+chmod 777 ./deploy.sh

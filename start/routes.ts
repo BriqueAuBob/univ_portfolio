@@ -23,11 +23,14 @@ router
     router.resource('units', AdminUnitsController).as('units');
     router.resource('projects', AdminProjectsController).as('projects');
     router.resource('courses', AdminCoursesController).as('courses');
+    router.post('upload', [HomeController, 'upload']).as('upload');
   })
   .prefix('admin')
   .as('admin')
   .middleware(middleware.auth());
 
-router.get('/uploads/:path', async ({ params, response }) => {
-  return response.download(app.makePath('../uploads', params.path));
-});
+router
+  .get('/uploads/:path', async ({ params, response }) => {
+    return response.download(app.makePath('../uploads', params.path));
+  })
+  .as('uploads');
