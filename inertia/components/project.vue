@@ -3,12 +3,24 @@ import { Link } from '@inertiajs/vue3';
 import { format, isValid } from 'date-fns';
 import { fr } from 'date-fns/locale';
 
-defineProps({
+const props = defineProps({
   project: {
     type: Object,
     required: true,
   },
+  unit: {
+    type: Object,
+    required: true,
+  },
 });
+
+const getProjectText = () => {
+  const customText = props.project.customTexts.find(
+    (customText) => customText.projectId === props.project.id && customText.unitId === props.unit.id
+  )?.text;
+  console.log(props.project.name, customText);
+  return customText || props.project.content;
+};
 </script>
 
 <template>
@@ -24,7 +36,7 @@ defineProps({
       </div>
       <div class="col-span-4 pb-4">
         <h2 class="mt-1 text-lg font-medium">{{ project.description }}</h2>
-        <div class="prose prose-zinc dark:prose-invert" v-html="project.content" v-if="project.content"></div>
+        <div class="prose prose-zinc dark:prose-invert" v-html="getProjectText()" v-if="getProjectText()"></div>
         <div v-else>
           <p>Aucun contenu pour ce projet.</p>
         </div>

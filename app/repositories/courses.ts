@@ -5,6 +5,10 @@ export default class CoursesRepository {
     return await Course.all();
   }
 
+  public async allWithUnits() {
+    return await Course.query().preload('units').exec();
+  }
+
   public async show(id: number) {
     return Course.findOrFail(id);
   }

@@ -18,7 +18,6 @@ const filteredCourses = computed(() => {
             const projectDate = new Date(project.createdAt);
             const dateStart = new Date(props.selectedFilter.date_start);
             const dateEnd = new Date(props.selectedFilter.date_end);
-            console.log(projectDate, dateStart, dateEnd, projectDate >= dateStart && projectDate <= dateEnd);
             return projectDate >= dateStart && projectDate <= dateEnd;
           }),
         };
@@ -47,7 +46,7 @@ const filteredCourses = computed(() => {
       <template v-for="course in filteredCourses" v-if="unit.courses.length > 0">
         <template v-if="course.projects.length > 0">
           <template v-for="(project, index) in course.projects">
-            <Project :project="project" />
+            <Project :project="project" :unit="unit" />
             <hr
               :class="{
                 'border-neutral-200 dark:border-neutral-700': index + 1 === course.projects.length,

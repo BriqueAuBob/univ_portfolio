@@ -29,7 +29,7 @@ export default class AdminProjectsController {
 
   public async create({ inertia }: HttpContext) {
     return inertia.render('admin/projects/create', {
-      courses: await this.coursesRepository.all(),
+      courses: await this.coursesRepository.allWithUnits(),
     });
   }
 
@@ -53,7 +53,7 @@ export default class AdminProjectsController {
   public async edit({ params, inertia }: HttpContext) {
     return inertia.render('admin/projects/edit', {
       project: await this.projectsRepository.show(params.id),
-      courses: await this.coursesRepository.all(),
+      courses: await this.coursesRepository.allWithUnits(),
     });
   }
 

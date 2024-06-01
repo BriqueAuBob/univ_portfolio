@@ -16,6 +16,14 @@ const createProjectValidator = vine.compile(
       return course ? true : false;
     }),
     createdAt: vine.date().optional(),
+    customTexts: vine
+      .array(
+        vine.object({
+          text: vine.string().optional(),
+          unitId: vine.number().optional(),
+        })
+      )
+      .optional(),
   })
 );
 

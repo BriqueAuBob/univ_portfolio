@@ -7,7 +7,7 @@ export default class ProjectsRepository {
   }
 
   public async show(id: number) {
-    return Project.query().where('id', id).preload('course').firstOrFail();
+    return Project.query().where('id', id).preload('course').preload('customTexts').firstOrFail();
   }
 
   public async update(id: number, data: any) {
@@ -17,14 +17,28 @@ export default class ProjectsRepository {
       project.createdAt = DateTime.fromJSDate(data.createdAt);
     }
     await project.save();
+    if (data.customTexts) {
+      const customTexts = data.customTexts.map((customText: any) => {
+        customText.projectId = project.id;
+        return customText;
+      });
+      console.log(customTexts);
+      await project.related('customTexts').updateOrCreateMany(customTexts, ['projectId', 'unitId']);
+    }
   }
 
   public async create(data: any) {
-    console.log(data);
     if (data.createdAt) {
       data.createdAt = DateTime.fromJSDate(data.createdAt);
-      console.log(data.createdAt);
     }
-    await Project.create(data);
+    const project = await Project.create(data);
+    console.log(data);
+    if (data.customTexts) {
+      const customTexts = data.customTexts.map((customText: any) => {
+        customText.projectId = project.id;
+        return customText;
+      });
+      await project.related('customTexts').createMany(customTexts);
+    }
   }
 }

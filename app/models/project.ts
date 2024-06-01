@@ -1,7 +1,8 @@
 import { DateTime } from 'luxon';
-import { BaseModel, belongsTo, column } from '@adonisjs/lucid/orm';
+import { BaseModel, belongsTo, column, hasMany } from '@adonisjs/lucid/orm';
 import Course from './course.js';
-import type { BelongsTo } from '@adonisjs/lucid/types/relations';
+import type { BelongsTo, HasMany } from '@adonisjs/lucid/types/relations';
+import CustomText from '#models/custom_text';
 
 export default class Project extends BaseModel {
   @column({ isPrimary: true })
@@ -30,4 +31,7 @@ export default class Project extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime;
+
+  @hasMany(() => CustomText)
+  declare customTexts: HasMany<typeof CustomText>;
 }
