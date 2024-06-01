@@ -15,7 +15,7 @@ import router from '@adonisjs/core/services/router';
 import app from '@adonisjs/core/services/app';
 import { middleware } from './kernel.js';
 
-router.get('/', [HomeController, 'index']).as('home');
+router.get('/', [HomeController, 'index']).as('home').middleware(middleware.auth());
 
 router
   .group(() => {
@@ -27,7 +27,8 @@ router
   })
   .prefix('admin')
   .as('admin')
-  .middleware(middleware.auth());
+  .middleware(middleware.auth())
+  .middleware(middleware.admin());
 
 router
   .get('/uploads/:path', async ({ params, response }) => {
