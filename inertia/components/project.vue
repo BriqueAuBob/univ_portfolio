@@ -18,8 +18,8 @@ const getProjectText = () => {
   const customText = props.project.customTexts.find(
     (customText) => customText.projectId === props.project.id && customText.unitId === props.unit.id
   )?.text;
-  console.log(props.project.name, customText);
-  return customText || props.project.content;
+  const text = customText || props.project.content;
+  return text?.replace(/class="language-/g, 'class="hljs language-');
 };
 </script>
 
