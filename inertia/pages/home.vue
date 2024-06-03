@@ -63,7 +63,8 @@ watch(
         Portfolio universitaire de
         <span class="text-7xl font-black">Brandon Clément</span>
       </h1>
-      <h2 class="mt-2 text-xl font-semibold">Etudiant en BUT MMI à l'IUT de Troyes</h2>
+      <h2 class="mt-2 text-3xl font-semibold">Etudiant en BUT MMI à l'IUT de Troyes</h2>
+      <div class="mt-2 text-lg font-medium text-orange-200">Strictement confidentiel, merci de ne pas diffuser.</div>
       <nav class="mt-4">
         <ul class="flex flex-wrap gap-2">
           <li v-for="unit in units">
