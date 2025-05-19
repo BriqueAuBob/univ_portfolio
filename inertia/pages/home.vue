@@ -35,6 +35,12 @@ const filters: {
     date_start: '2023-09-01',
     date_end: '2024-08-31',
   },
+  {
+    name: '3ème année',
+    value: '3nd',
+    date_start: '2024-09-01',
+    date_end: '2025-08-31',
+  },
 ];
 const selectedFilter = ref(filters[0]);
 onMounted(() => {
