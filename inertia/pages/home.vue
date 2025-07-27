@@ -4,9 +4,9 @@ import { Head } from '@inertiajs/vue3';
 import Unit from '../components/unit.vue';
 // @ts-ignore
 import Layout from '../layouts/default.vue';
-import { PropType, ref, watch, onMounted } from 'vue';
+import { PropType, ref, watch, onMounted, computed } from 'vue';
 
-defineProps({
+const props = defineProps({
   units: {
     type: Array as PropType<{ name: string; color: string; courses: any[] }[]>,
     required: true,
@@ -58,6 +58,15 @@ watch(
     window.history.pushState({}, '', `?filter=${selectedFilter.value.value}`);
   }
 );
+
+const unitsComputed = computed(() => {
+  return props.units.filter((unit) => {
+    if (selectedFilter.value.value === '3nd') {
+      return !['Comprendre', 'Concevoir', 'Exprimer'].includes(unit.name);
+    }
+    return true;
+  });
+});
 </script>
 
 <template>
@@ -103,7 +112,7 @@ watch(
           {{ filter.name }}
         </button>
       </div>
-      <Unit v-for="unit in units" :unit="unit" :selectedFilter="selectedFilter" />
+      <Unit v-for="unit in unitsComputed" :unit="unit" :selectedFilter="selectedFilter" />
     </main>
   </Layout>
 </template>
