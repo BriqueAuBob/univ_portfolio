@@ -31,7 +31,7 @@ const getProjectText = () => {
           <img
             :src="`/uploads/${project.image}`"
             alt="Project image"
-            class="absolute -z-10 mb-4 w-full scale-105 rounded-2xl object-cover blur-2xl"
+            class="absolute -z-10 mb-4 w-full rounded-2xl object-cover blur-2xl"
           />
           <img :src="`/uploads/${project.image}`" alt="Project image" class="mb-4 w-full rounded-2xl object-cover" />
         </div>
