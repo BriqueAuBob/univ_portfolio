@@ -27,7 +27,10 @@ const getProjectText = () => {
   <article class="flex flex-col gap-2">
     <div class="relative grid-cols-6 gap-4 lg:grid">
       <div class="h-fit lg:sticky lg:top-24 lg:col-span-2">
-        <img :src="`/uploads/${project.image}`" alt="Project image" class="mb-4 w-full rounded-2xl object-cover" />
+        <div class="relative">
+          <img :src="`/uploads/${project.image}`" alt="Project image" class="absolute -z-10 mb-4 w-full rounded-2xl object-cover blur-xl" />
+          <img :src="`/uploads/${project.image}`" alt="Project image" class="mb-4 w-full rounded-2xl object-cover" />
+        </div>
 
         <h1 class="text-2xl font-black">{{ project.name }}</h1>
         <span v-if="project.createdAt && isValid(new Date(project.createdAt))" class="text-lg font-medium">{{
