@@ -28,7 +28,11 @@ const getProjectText = () => {
     <div class="relative grid-cols-6 gap-4 lg:grid">
       <div class="h-fit lg:sticky lg:top-24 lg:col-span-2">
         <div class="relative">
-          <img :src="`/uploads/${project.image}`" alt="Project image" class="absolute -z-10 mb-4 w-full rounded-2xl object-cover blur-xl" />
+          <img
+            :src="`/uploads/${project.image}`"
+            alt="Project image"
+            class="absolute -z-10 mb-4 w-full scale-105 rounded-2xl object-cover blur-2xl"
+          />
           <img :src="`/uploads/${project.image}`" alt="Project image" class="mb-4 w-full rounded-2xl object-cover" />
         </div>
 
