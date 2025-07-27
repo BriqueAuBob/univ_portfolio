@@ -25,8 +25,8 @@ const getProjectText = () => {
 
 <template>
   <article class="flex flex-col gap-2">
-    <div class="relative grid grid-cols-6 gap-4">
-      <div class="sticky top-24 col-span-2 h-fit">
+    <div class="relative grid-cols-6 gap-4 lg:grid">
+      <div class="h-fit lg:sticky lg:top-24 lg:col-span-2">
         <img :src="`/uploads/${project.image}`" alt="Project image" class="mb-4 w-full rounded-2xl object-cover" />
 
         <h1 class="text-2xl font-black">{{ project.name }}</h1>

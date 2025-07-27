@@ -1,11 +1,9 @@
 git checkout .
 git pull
-node ace build
+npm run build
 cd build
-npm ci --omit=dev -max-old-space-size=1024
+npm ci --omit=dev
 cp ../.env .
-node ace migration:run --force
-pm2 delete server
-pm2 start bin/server.js --name server
+pm2 restart univ_portfolio
 cd ../
 sudo chmod 777 ./deploy.sh
