@@ -12,7 +12,3 @@ option[selected] {
   background-color: #2563eb !important;
   color: #fff;
 }
-
-#app {
-  @apply overflow-x-hidden;
-}
